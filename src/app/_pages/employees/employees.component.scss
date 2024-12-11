@@ -1,0 +1,29 @@
+.employees {
+  display: flex;
+  flex-direction: column;
+
+  &__headline {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  &__header-panel {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  &__header-label {
+    font-size: 1.5rem;
+  }
+}
+
+.mat-mdc-row {
+  cursor: pointer;
+  &:hover {
+    background-color: var(--primary-color-light);
+  }
+}

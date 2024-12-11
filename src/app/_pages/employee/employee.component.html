@@ -1,0 +1,48 @@
+<div class="employee">
+  <a class="employee__back" routerLink="/employees">
+    <mat-icon>
+      <span> keyboard_arrow_left </span>
+    </mat-icon>
+    <span>Back</span>
+  </a>
+  <div class="employee__header-panel">
+    <div class="employee__header-label">{{ employee.name }}</div>
+    <button mat-flat-button (click)="offboardUser()">Offboard</button>
+  </div>
+  <div class="employee__details">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title> Employee Details </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="employee__info">
+          <div class="employee__info-row">
+            <div class="employee__info-label">Full Name:</div>
+            <div>{{ employee.name }}</div>
+          </div>
+          <div class="employee__info-row">
+            <div class="employee__info-label">Email:</div>
+            <div>{{ employee.email }}</div>
+          </div>
+          <div class="employee__info-row">
+            <div class="employee__info-label">Department:</div>
+            <div>{{ employee.department }}</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title> Equipment </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ul class="employee__equipment-list">
+          @for (item of employee.equipments; track item.id) {
+            <li>{{ item.name }}</li>
+          }
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

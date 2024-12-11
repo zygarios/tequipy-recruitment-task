@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+@use "./theme-colors" as tequipy-theme;
+@use "@angular/material" as mat;
+* {
+  box-sizing: border-box;
+}
+html {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: tequipy-theme.$primary-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+:root {
+  --mat-sys-surface: white;
+  --primary-color: #ff9500;
+  --primary-color-light: #ff950010;
+  --mat-sys-primary: var(--primary-color);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mat-elevation-z1 {
+  box-shadow: var(--mat-sys-level1);
+}
+.mat-elevation-z2 {
+  box-shadow: var(--mat-sys-level2);
+}
+.mat-elevation-z3 {
+  box-shadow: var(--mat-sys-level3);
+}
+.mat-divider {
+  opacity: 0.3;
+}

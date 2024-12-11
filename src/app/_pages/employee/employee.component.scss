@@ -1,0 +1,55 @@
+.employee {
+  &__back {
+    display: flex;
+    align-items: center;
+  }
+  &__header-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  &__header-label {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  &__details {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    mat-card {
+      width: 100%;
+      height: fit-content;
+    }
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    strong {
+      width: 100px;
+      display: inline-block;
+    }
+    &-row {
+      display: flex;
+      align-items: center;
+    }
+    &-label {
+      width: 100px;
+    }
+  }
+
+  ul {
+    li {
+      padding: 10px 0;
+      &:not(:last-child) {
+        border-bottom: 1px solid #e0e0e0;
+      }
+    }
+  }
+
+  mat-card-content {
+    padding-top: 20px;
+  }
+}
