@@ -2,6 +2,7 @@ import {
   afterNextRender,
   ChangeDetectionStrategy,
   Component,
+  inject,
   viewChild,
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,8 +15,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
-import { EMPLOYEES } from '../../_mock-data/employees.data';
 import { GenericFunctionPipe } from '../../_pipes/generic-function.pipe';
+import { EmployeesService } from '../../_services/employees.service';
 import { Employee } from '../../_types/employee.model';
 import { Equipment } from '../../_types/equipment.model';
 
@@ -40,20 +41,30 @@ import { Equipment } from '../../_types/equipment.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesComponent {
-  displayedColumns: string[] = [
+  private _employeesService = inject(EmployeesService);
+
+  readonly displayedColumns: string[] = [
     'name',
     'email',
     'department',
     'equipments',
     'status',
   ];
-  dataSource: MatTableDataSource<Employee> = new MatTableDataSource(EMPLOYEES);
+  readonly dataSource: MatTableDataSource<Employee> =
+    new MatTableDataSource<Employee>([]);
   private readonly _paginator = viewChild.required(MatPaginator);
   private readonly _sort = viewChild.required(MatSort);
 
   constructor() {
+    this._getEmployees();
     afterNextRender(() => {
       this._setTableFeatures();
+    });
+  }
+
+  private _getEmployees() {
+    this._employeesService.getAllEmployees().subscribe((employees) => {
+      this.dataSource.data = employees;
     });
   }
 

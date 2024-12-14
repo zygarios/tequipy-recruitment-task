@@ -1,10 +1,15 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { EMPLOYEES } from '../../_mock-data/employees.data';
+import { EmployeesService } from '../../_services/employees.service';
 import { Employee } from '../../_types/employee.model';
 import { OffboardDialogComponent } from './_components/offboard-dialog/offboard-dialog.component';
 
@@ -22,11 +27,27 @@ import { OffboardDialogComponent } from './_components/offboard-dialog/offboard-
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeComponent {
-  private _route = inject(ActivatedRoute);
-  employee: Employee = EMPLOYEES[0];
-  private _matDialog = inject(MatDialog);
+  private readonly _route = inject(ActivatedRoute);
+  private readonly _matDialog = inject(MatDialog);
+  private readonly _employeesService = inject(EmployeesService);
+  readonly employee = signal<null | Employee>(null);
+
+  constructor() {
+    this._getEmployee();
+  }
+  private _getEmployee() {
+    if (this._route.snapshot.params['id']) {
+      this._employeesService
+        .getEmployeeById(this._route.snapshot.params['id'])
+        .subscribe((employee) => {
+          this.employee.set(employee);
+        });
+    }
+  }
 
   offboardUser() {
-    this._matDialog.open(OffboardDialogComponent);
+    this._matDialog.open(OffboardDialogComponent, {
+      data: { employeeId: this.employee()!.id },
+    });
   }
 }
