@@ -1,59 +1,44 @@
 # TequipyRecruitmentTask
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.4.
+## Project Description
 
-## Development server
+This project is a solution to a recruitment task that utilizes Angular as the frontend and Express as the backend. The application allows for employee management, including offboarding.
 
-To start a local development server, run:
+## Running the Project
 
-```bash
-ng serve
-```
+To run the application, please follow these steps:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. Ensure you have Node.js version `^18.19.1 || ^20.11.1 || ^22.0.0` installed.
+2. Install the required packages:
 
-## Code scaffolding
+   ```bash
+   npm install
+   ```
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+3. Start the development backend:
 
-```bash
-ng generate component component-name
-```
+   ```bash
+   npm run mock-server
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+4. In a separate terminal, start the frontend:
+   ```bash
+   npm run start
+   ```
 
-```bash
-ng generate --help
-```
+## Changes in the Model
 
-## Building
+I made several changes to the data model in the project:
 
-To build the project run:
+- I added a `city` field, which was not included in the original task but was visible in the mockups.
+- I moved the `receiver` field outside of the `address` group, which I found to be more sensible in the context of the application.
 
-```bash
-ng build
-```
+## Unit Tests
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+I did not add unit tests to the project. I focused on implementing functionality and adapting the model to the requirements.
 
-## Running unit tests
+## Additional Information
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+The application uses Angular Material for styling components and forms. All data is simulated by the backend, allowing for easy testing and development of the application.
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Note:** The project only supports desktop view.
