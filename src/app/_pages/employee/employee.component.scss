@@ -1,4 +1,7 @@
 .employee {
+  &__no-data {
+    padding: 20px;
+  }
   &__back {
     display: flex;
     align-items: center;
