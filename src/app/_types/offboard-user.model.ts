@@ -1,8 +1,8 @@
 interface Address {
-  streetLine1: string;
-  country: string;
+  streetLine: string;
   postalCode: string;
-  receiver: string;
+  city: string;
+  country: string;
 }
 
 export interface OffboardUser {
@@ -10,4 +10,5 @@ export interface OffboardUser {
   notes: string;
   phone: string;
   email: string;
+  receiver: string;
 }

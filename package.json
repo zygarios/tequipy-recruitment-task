@@ -3,10 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "NG_HMR_TEMPLATES=1 ng serve",
+    "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "mock": "json-server  src/app/_mock-data/db.json --port 3000",
+    "mock-server": "node mock-server/mock.server.mjs",
     "test": "ng test"
   },
   "private": true,
@@ -30,8 +29,9 @@
     "@angular/cli": "^19.0.5",
     "@angular/compiler-cli": "^19.0.4",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^22.10.2",
+    "cors": "^2.8.5",
     "jasmine-core": "~5.4.0",
-    "json-server": "^1.0.0-beta.3",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",

@@ -19,8 +19,8 @@ html {
 :root {
   --mat-sys-surface: white;
   --primary-color: #ff9500;
-  --primary-color-light: #ff950010;
   --mat-sys-primary: var(--primary-color);
+  --mat-sys-inverse-surface: var(--primary-color);
 }
 
 html,
@@ -41,7 +41,12 @@ ul {
   margin: 0;
   padding: 0;
 }
-
+mat-form-field {
+  height: fit-content;
+}
+textarea.mat-mdc-form-field-textarea-control {
+  resize: none;
+}
 .mat-elevation-z1 {
   box-shadow: var(--mat-sys-level1);
 }

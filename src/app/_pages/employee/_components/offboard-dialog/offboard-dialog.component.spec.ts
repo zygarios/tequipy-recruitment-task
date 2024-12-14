@@ -8,9 +8,8 @@ describe('OffboardDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OffboardDialogComponent]
-    })
-    .compileComponents();
+      imports: [OffboardDialogComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(OffboardDialogComponent);
     component = fixture.componentInstance;

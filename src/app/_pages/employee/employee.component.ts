@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { filter } from 'rxjs';
 import { EmployeesService } from '../../_services/employees.service';
 import { Employee } from '../../_types/employee.model';
 import { OffboardDialogComponent } from './_components/offboard-dialog/offboard-dialog.component';
@@ -46,8 +47,17 @@ export class EmployeeComponent {
   }
 
   offboardUser() {
-    this._matDialog.open(OffboardDialogComponent, {
-      data: { employeeId: this.employee()!.id },
-    });
+    this._matDialog
+      .open(OffboardDialogComponent, {
+        data: { employeeId: this.employee()!.id },
+      })
+      .afterClosed()
+      .pipe(filter((isOffboarded) => !!isOffboarded))
+      .subscribe(() => {
+        this.employee.update((employee) => ({
+          ...(employee as Employee),
+          status: 'OFFBOARDED',
+        }));
+      });
   }
 }

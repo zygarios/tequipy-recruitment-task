@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, of } from 'rxjs';
 import { Employee } from '../_types/employee.model';
 import { OffboardUser } from '../_types/offboard-user.model';
 
@@ -20,8 +19,9 @@ export class EmployeesService {
   }
 
   offboardUser(id: string, offboardData: OffboardUser) {
-    return this._httpClient
-      .post(`${this.apiUrl}/users/${id}/offboard`, offboardData)
-      .pipe(catchError((error) => of(error)));
+    return this._httpClient.post<{ message: string; data: OffboardUser }>(
+      `${this.apiUrl}/users/${id}/offboard`,
+      offboardData,
+    );
   }
 }

@@ -1,1 +1,95 @@
-<p>offboard-dialog works!</p>
+<div mat-dialog-title class="header">Offboard</div>
+<mat-dialog-content>
+  <form [formGroup]="employeeOffboardForm" class="offboard">
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>Receiver</mat-label>
+      <input matInput formControlName="receiver" />
+      @if (employeeOffboardForm.controls.receiver.hasError("required")) {
+        <mat-error>To pole jest wymagane</mat-error>
+      }
+      @if (employeeOffboardForm.controls.receiver.hasError("maxlength")) {
+        <mat-error>Maksymalna długość to 30 znaków</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput />
+      @if (employeeOffboardForm.controls.email.hasError("required")) {
+        <mat-error>To pole jest wymagane</mat-error>
+      }
+      @if (employeeOffboardForm.controls.email.hasError("pattern")) {
+        <mat-error>Nieprawidłowy adres e-mail</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>Phone</mat-label>
+      <input formControlName="phone" matInput />
+      @if (employeeOffboardForm.controls.phone.hasError("required")) {
+        <mat-error>To pole jest wymagane</mat-error>
+      }
+      @if (employeeOffboardForm.controls.phone.hasError("pattern")) {
+        <mat-error>Nieprawidłowy numer telefonu</mat-error>
+      }
+    </mat-form-field>
+
+    @let addressFormControls = employeeOffboardForm.controls.address.controls;
+    <div class="offboard__form-row">
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Street line</mat-label>
+        <input [formControl]="addressFormControls.streetLine" matInput />
+        @if (addressFormControls.streetLine.hasError("required")) {
+          <mat-error>To pole jest wymagane</mat-error>
+        }
+        @if (addressFormControls.streetLine.hasError("maxlength")) {
+          <mat-error>Maksymalna długość to 50 znaków</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Postal code</mat-label>
+        <input [formControl]="addressFormControls.postalCode" matInput />
+        @if (addressFormControls.postalCode.hasError("required")) {
+          <mat-error>To pole jest wymagane</mat-error>
+        }
+        @if (addressFormControls.postalCode.hasError("pattern")) {
+          <mat-error>Nieprawidłowy kod pocztowy</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div class="offboard__form-row">
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>City</mat-label>
+        <input [formControl]="addressFormControls.city" matInput />
+        @if (addressFormControls.city.hasError("required")) {
+          <mat-error>To pole jest wymagane</mat-error>
+        }
+        @if (addressFormControls.city.hasError("maxlength")) {
+          <mat-error>Maksymalna długość to 50 znaków</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Country</mat-label>
+        <input [formControl]="addressFormControls.country" matInput />
+        @if (addressFormControls.country.hasError("required")) {
+          <mat-error>To pole jest wymagane</mat-error>
+        }
+        @if (addressFormControls.country.hasError("maxlength")) {
+          <mat-error>Maksymalna długość to 20 znaków</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>Notes</mat-label>
+      <textarea formControlName="notes" matInput></textarea>
+      @if (employeeOffboardForm.controls.notes.hasError("maxlength")) {
+        <mat-error>Maksymalna długość to 200 znaków</mat-error>
+      }
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="actions">
+    <button mat-button mat-dialog-close>CANCEL</button>
+    <button mat-flat-button (click)="submitForm()">CONFIRM</button>
+  </div>
+</mat-dialog-actions>

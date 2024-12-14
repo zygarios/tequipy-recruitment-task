@@ -1,0 +1,31 @@
+.offboard {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  &__form-row {
+    display: flex;
+    gap: 10px;
+  }
+}
+.header {
+  text-align: center;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+mat-form-field {
+  margin-bottom: 15px;
+}
+
+.mat-mdc-dialog {
+  &-content {
+    background: rgba(0, 0, 0, 0.01);
+  }
+  &-actions,
+  &-title {
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.5);
+  }
+}
